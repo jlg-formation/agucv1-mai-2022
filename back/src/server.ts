@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use("/api", api);
 
 app.use(express.static("."));
-app.use(serveIndex("."));
+app.use(serveIndex(".", { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
