@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/normalize.css/normalize.css";
+@import "../node_modules/sanitize.css/sanitize.css";
 
 @import "scss/variables.scss";
 @import "scss/button.scss";
@@ -14,6 +15,10 @@ main {
   flex-flow: column;
   align-items: center;
   gap: 0.5em;
+  width: 100%;
+  max-width: 100ch;
+  margin: 0 auto;
+  padding: 0.5em;
 }
 
 h1 {
