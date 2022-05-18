@@ -1,7 +1,7 @@
 button {
   padding: 0.5em 1em;
   border: 0.1em solid #eee;
-  border-radius: 0.3em;
+  border-radius: $border-radius;
   background-color: #eee;
   &:not(:disabled) {
     cursor: pointer;
