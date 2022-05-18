@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faRotateRight,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import { Articles } from '../interfaces/article';
 
 @Component({
@@ -8,7 +12,9 @@ import { Articles } from '../interfaces/article';
   styleUrls: ['./stock.component.scss'],
 })
 export class StockComponent implements OnInit {
-  faCoffee = faCoffee;
+  faRotateRight = faRotateRight;
+  faPlus = faPlus;
+  faTrashCan = faTrashCan;
 
   articles: Articles = [
     {

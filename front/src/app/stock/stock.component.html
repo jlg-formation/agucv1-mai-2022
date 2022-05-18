@@ -3,11 +3,15 @@
 
   <div class="content">
     <nav>
-      <button>
-        <fa-icon [icon]="faCoffee"></fa-icon>
+      <button title="Raffraichir">
+        <fa-icon [icon]="faRotateRight"></fa-icon>
       </button>
-      <button routerLink="add">Ajouter</button>
-      <button>Supprimer</button>
+      <button routerLink="add" title="Ajouter">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <button title="Supprimer">
+        <fa-icon [icon]="faTrashCan"></fa-icon>
+      </button>
     </nav>
     <table>
       <thead>
