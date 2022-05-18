@@ -1,0 +1,18 @@
+@import "src/scss/variables.scss";
+
+footer {
+  background-color: #eee;
+  height: $height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > a {
+    text-decoration: inherit;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,5 +1,7 @@
+@import "src/scss/variables.scss";
+
 header {
-  height: 3em;
+  height: $height;
   background-color: #eee;
   display: flex;
   align-items: center;
