@@ -7,3 +7,14 @@
 body {
   font-family: sans-serif;
 }
+
+main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+h1 {
+  text-align: center;
+}
