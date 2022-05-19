@@ -35,6 +35,10 @@ export class ArticleService {
     return JSON.parse(str);
   }
 
+  async refresh() {
+    this.articles = this.getArticles();
+  }
+
   save() {
     localStorage.setItem(ARTICLES_KEY, JSON.stringify(this.articles));
   }

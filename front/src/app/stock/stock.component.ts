@@ -19,4 +19,14 @@ export class StockComponent implements OnInit {
   constructor(public articleService: ArticleService) {}
 
   ngOnInit(): void {}
+
+  refresh() {
+    (async () => {
+      try {
+        await this.articleService.refresh();
+      } catch (err) {
+        console.log('err: ', err);
+      }
+    })();
+  }
 }
