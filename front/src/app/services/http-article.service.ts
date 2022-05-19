@@ -45,4 +45,27 @@ export class HttpArticleService extends ArticleService {
       },
     });
   }
+
+  override async remove(selectedArticles: Set<Article>): Promise<void> {
+    await super.remove(selectedArticles);
+    const ids = [...selectedArticles].map((a) => a.id);
+    this.http
+      .delete<void>(url, {
+        body: ids,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .subscribe({
+        next: () => {
+          console.log('deleted on back with success');
+        },
+        complete: () => {
+          console.log('complete');
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+      });
+  }
 }
