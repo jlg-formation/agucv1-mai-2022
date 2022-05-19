@@ -1,26 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Article, Articles } from '../interfaces/article';
 
+const ARTICLES_KEY = 'articles';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  articles: Articles = [
-    {
-      name: 'Tournevis cruciforme',
-      price: 2.34,
-      qty: 103,
-    },
-    {
-      name: 'Pelle',
-      price: 6,
-      qty: 15,
-    },
-  ];
+  articles: Articles = this.getArticles();
 
   constructor() {}
 
   async add(article: Article) {
     this.articles.push(article);
+    this.save();
+  }
+
+  getArticles(): Articles {
+    const str = localStorage.getItem(ARTICLES_KEY);
+    if (str === null) {
+      return [
+        {
+          name: 'Tournevis cruciforme',
+          price: 2.34,
+          qty: 103,
+        },
+        {
+          name: 'Pelle',
+          price: 6,
+          qty: 15,
+        },
+      ];
+    }
+    return JSON.parse(str);
+  }
+
+  save() {
+    localStorage.setItem(ARTICLES_KEY, JSON.stringify(this.articles));
   }
 }
