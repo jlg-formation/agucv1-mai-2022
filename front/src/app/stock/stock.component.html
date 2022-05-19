@@ -9,7 +9,11 @@
       <button routerLink="add" title="Ajouter">
         <fa-icon [icon]="faPlus"></fa-icon>
       </button>
-      <button title="Supprimer" [hidden]="selectedArticles.size === 0">
+      <button
+        title="Supprimer"
+        [hidden]="selectedArticles.size === 0"
+        (click)="remove()"
+      >
         <fa-icon [icon]="faTrashCan"></fa-icon>
       </button>
     </nav>
