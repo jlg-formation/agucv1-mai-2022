@@ -4,6 +4,7 @@ import {
   faRotateRight,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
+import { Article } from '../interfaces/article';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class StockComponent implements OnInit {
   faRotateRight = faRotateRight;
   faPlus = faPlus;
   faTrashCan = faTrashCan;
+
+  selectedArticles = new Set<Article>();
 
   constructor(public articleService: ArticleService) {}
 
@@ -28,5 +31,14 @@ export class StockComponent implements OnInit {
         console.log('err: ', err);
       }
     })();
+  }
+
+  toggle(a: Article) {
+    console.log('a: ', a);
+    if (this.selectedArticles.has(a)) {
+      this.selectedArticles.delete(a);
+      return;
+    }
+    this.selectedArticles.add(a);
   }
 }
