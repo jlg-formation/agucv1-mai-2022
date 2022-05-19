@@ -1,15 +1,19 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appAutofocus]',
 })
 export class AutofocusDirective implements OnInit {
-  constructor(private elt: ElementRef<HTMLElement>) {
-    console.log('instantiate autofocus directive');
-  }
+  @Input()
+  appAutofocus = '';
+
+  constructor(private elt: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
-    console.log('elt.nativeElement: ', this.elt.nativeElement);
     this.elt.nativeElement.focus();
+
+    if (this.appAutofocus === 'select') {
+      (this.elt.nativeElement as HTMLInputElement).select();
+    }
   }
 }
