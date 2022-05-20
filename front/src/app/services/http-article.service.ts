@@ -31,18 +31,14 @@ export class HttpArticleService extends ArticleService {
   }
 
   override async add(article: Article): Promise<void> {
-    await super.add(article);
-    this.http.post<void>(url, article).subscribe({
-      next: () => {
-        console.log('added on back with success');
-      },
-      complete: () => {
-        console.log('complete');
-      },
-      error: (err) => {
-        console.log('err: ', err);
-      },
-    });
+    try {
+      await super.add(article);
+      await lastValueFrom(this.http.post<void>(url, article).pipe(delay(10)));
+      console.log('added on back with success');
+    } catch (err) {
+      console.log('err: ', err);
+      throw err;
+    }
   }
 
   override async remove(selectedArticles: Set<Article>): Promise<void> {
