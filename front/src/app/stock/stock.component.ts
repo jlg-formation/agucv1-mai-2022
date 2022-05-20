@@ -17,6 +17,7 @@ export class StockComponent implements OnInit {
   faRotateRight = faRotateRight;
   faTrashCan = faTrashCan;
   selectedArticles = new Set<Article>();
+  isRefreshing = false;
 
   constructor(public articleService: ArticleService) {}
 
@@ -27,9 +28,12 @@ export class StockComponent implements OnInit {
   refresh() {
     (async () => {
       try {
+        this.isRefreshing = true;
         await this.articleService.refresh();
       } catch (err) {
         console.log('err: ', err);
+      } finally {
+        this.isRefreshing = false;
       }
     })();
   }

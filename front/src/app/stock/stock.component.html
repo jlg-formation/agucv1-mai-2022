@@ -4,7 +4,7 @@
   <div class="content">
     <nav>
       <button title="Raffraichir" (click)="refresh()">
-        <fa-icon [icon]="faRotateRight"></fa-icon>
+        <fa-icon [icon]="faRotateRight" [spin]="isRefreshing"></fa-icon>
       </button>
       <button routerLink="add" title="Ajouter">
         <fa-icon [icon]="faPlus"></fa-icon>

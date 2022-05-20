@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArticleService } from './article.service';
 import { HttpClient } from '@angular/common/http';
 import { Article, Articles } from '../interfaces/article';
+import { delay, lastValueFrom } from 'rxjs';
 
 const url = 'http://localhost:3000/api/articles';
 
@@ -15,20 +16,18 @@ export class HttpArticleService extends ArticleService {
   }
 
   override async refresh(): Promise<void> {
-    await super.refresh();
-    this.http.get<Articles>(url).subscribe({
-      next: (articles) => {
-        console.log('articles: ', articles);
-        this.articles = articles;
-        this.save();
-      },
-      complete: () => {
-        console.log('complete');
-      },
-      error: (err) => {
-        console.log('err: ', err);
-      },
-    });
+    try {
+      await super.refresh();
+      const articles = await lastValueFrom(
+        this.http.get<Articles>(url).pipe(delay(2000))
+      );
+      console.log('articles: ', articles);
+      this.articles = articles;
+      this.save();
+    } catch (err) {
+      console.error('err: ', err);
+      throw err;
+    }
   }
 
   override async add(article: Article): Promise<void> {

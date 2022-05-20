@@ -10,10 +10,15 @@ describe('HttpArticleService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    service = TestBed.inject(HttpArticleService);
   });
 
   it('should be created', () => {
+    service = TestBed.inject(HttpArticleService);
     expect(service).toBeTruthy();
   });
+  // it('should refresh', () => {
+  //   service = TestBed.inject(HttpArticleService);
+  //   await service.refresh();
+  //   expect(service).toBeTruthy();
+  // });
 });
