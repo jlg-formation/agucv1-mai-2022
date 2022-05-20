@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   faPlus,
@@ -18,6 +19,7 @@ export class StockComponent implements OnInit {
   faTrashCan = faTrashCan;
   selectedArticles = new Set<Article>();
   isRefreshing = false;
+  errorMsg = '';
 
   constructor(public articleService: ArticleService) {}
 
@@ -28,10 +30,14 @@ export class StockComponent implements OnInit {
   refresh() {
     (async () => {
       try {
+        this.errorMsg = '';
         this.isRefreshing = true;
         await this.articleService.refresh();
       } catch (err) {
         console.log('err: ', err);
+        if (err instanceof HttpErrorResponse) {
+          this.errorMsg = err.message;
+        }
       } finally {
         this.isRefreshing = false;
       }

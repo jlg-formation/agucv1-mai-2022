@@ -17,6 +17,9 @@
         <fa-icon [icon]="faTrashCan"></fa-icon>
       </button>
     </nav>
+    <div class="error">
+      {{ errorMsg | ellipsis: 30 }}
+    </div>
     <table aria-label="Liste des articles">
       <thead>
         <tr>

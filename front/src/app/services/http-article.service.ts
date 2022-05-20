@@ -19,7 +19,7 @@ export class HttpArticleService extends ArticleService {
     try {
       await super.refresh();
       const articles = await lastValueFrom(
-        this.http.get<Articles>(url).pipe(delay(2000))
+        this.http.get<Articles>(url).pipe(delay(5))
       );
       console.log('articles: ', articles);
       this.articles = articles;
