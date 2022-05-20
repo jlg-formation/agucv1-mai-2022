@@ -19,8 +19,8 @@ describe('My First Test', () => {
 
     cy.get('button').click();
 
-    cy.get('table tbody tr:last-child').contains(
-      `Machine ${id}`.substring(0, 13)
-    );
+    cy.get('table tbody tr:last-child td.name')
+      .invoke('attr', 'title')
+      .should('eq', `Machine ${id}`);
   });
 });

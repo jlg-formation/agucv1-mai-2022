@@ -34,7 +34,7 @@
           (click)="toggle(a)"
           [class.selected]="selectedArticles.has(a)"
         >
-          <td class="name">{{ a.name | ellipsis: 13 }}</td>
+          <td class="name" [title]="a.name">{{ a.name | ellipsis: 13 }}</td>
           <td class="price">{{ a.price | currency: "EUR" }}</td>
           <td class="qty">{{ a.qty }}</td>
         </tr>
