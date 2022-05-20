@@ -19,6 +19,12 @@ app.get("/date", (req, res) => {
   });
 });
 
+app.get("/crash", (req, res) => {
+  (async () => {
+    throw new Error("crash");
+  })();
+});
+
 app.get("/articles", (req, res) => {
   res.json(articles);
 });
