@@ -10,6 +10,8 @@ div.content {
   div.error {
     height: 2em;
     font-weight: bold;
+    display: flex;
+    align-items: center;
   }
 
   table {
