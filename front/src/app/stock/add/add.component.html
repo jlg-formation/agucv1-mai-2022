@@ -18,6 +18,6 @@
       <div>Quantité</div>
       <input type="number" formControlName="qty" />
     </label>
-    <button class="primary">Ajouter</button>
+    <button [disabled]="f.invalid" class="primary">Ajouter</button>
   </form>
 </main>
