@@ -41,4 +41,22 @@ describe('HttpArticleService', () => {
 
     expect(service).toBeTruthy();
   });
+
+  it('should refresh in error', async () => {
+    service = TestBed.inject(HttpArticleService);
+    const call = service.refresh();
+    await delay(10);
+    const req = http.expectOne(url);
+    expect(req.request.method).toEqual('GET');
+    req.flush('', { status: 500, statusText: 'Internal Error' });
+
+    let error;
+    try {
+      await call;
+    } catch (e) {
+      error = e;
+    }
+    expect(error).not.toBeUndefined();
+    expect(service).toBeTruthy();
+  });
 });
