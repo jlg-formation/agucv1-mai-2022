@@ -19,18 +19,7 @@ export class ArticleService {
   getArticles(): Articles {
     const str = localStorage.getItem(ARTICLES_KEY);
     if (str === null) {
-      return [
-        {
-          name: 'Tournevis cruciforme',
-          price: 2.34,
-          qty: 103,
-        },
-        {
-          name: 'Pelle',
-          price: 6,
-          qty: 15,
-        },
-      ];
+      return [];
     }
     return JSON.parse(str);
   }
