@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://toto.com',
+  url: 'https://toto-uat.com',
 };
