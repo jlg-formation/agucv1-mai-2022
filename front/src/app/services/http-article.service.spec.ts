@@ -3,7 +3,11 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { newArticle, selectedArticles } from '../test/data/articles.fixture';
+import {
+  articles,
+  newArticle,
+  selectedArticles,
+} from '../test/data/articles.fixture';
 
 import { HttpArticleService, url } from './http-article.service';
 
@@ -16,6 +20,7 @@ describe('HttpArticleService', () => {
   let http: HttpTestingController;
 
   beforeEach(() => {
+    localStorage.clear();
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
@@ -37,10 +42,11 @@ describe('HttpArticleService', () => {
     await delay(10);
     const req = http.expectOne(url);
     expect(req.request.method).toEqual('GET');
-    req.flush([]);
+    req.flush(articles);
     await call;
 
     expect(service).toBeTruthy();
+    expect(service.articles).toHaveSize(articles.length);
   });
 
   it('should refresh in error', async () => {
