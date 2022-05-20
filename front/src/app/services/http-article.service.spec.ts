@@ -3,7 +3,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { newArticle } from '../test/data/articles.fixture';
+import { newArticle, selectedArticles } from '../test/data/articles.fixture';
 
 import { HttpArticleService, url } from './http-article.service';
 
@@ -79,6 +79,36 @@ describe('HttpArticleService', () => {
     await delay(10);
     const req = http.expectOne(url);
     expect(req.request.method).toEqual('POST');
+    req.flush('', { status: 500, statusText: 'Internal Error' });
+
+    let error;
+    try {
+      await call;
+    } catch (e) {
+      error = e;
+    }
+    expect(error).not.toBeUndefined();
+    expect(service).toBeTruthy();
+  });
+
+  it('should remove', async () => {
+    service = TestBed.inject(HttpArticleService);
+    const call = service.remove(selectedArticles);
+    await delay(10);
+    const req = http.expectOne(url);
+    expect(req.request.method).toEqual('DELETE');
+    req.flush('', { status: 204, statusText: 'No Content' });
+    await call;
+
+    expect(service).toBeTruthy();
+  });
+
+  it('should remove in error', async () => {
+    service = TestBed.inject(HttpArticleService);
+    const call = service.remove(selectedArticles);
+    await delay(10);
+    const req = http.expectOne(url);
+    expect(req.request.method).toEqual('DELETE');
     req.flush('', { status: 500, statusText: 'Internal Error' });
 
     let error;
