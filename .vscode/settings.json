@@ -6,5 +6,10 @@
       "snippet": "(async () => {\n\t$TM_SELECTED_TEXT\n})();$0", // <-- snippet goes here.
       "languageIds": ["javascript", "typescript", "typescriptreact"]
     }
-  }
+  },
+
+  "eslint.workingDirectories": [
+    { "directory": "front", "changeProcessCWD": true },
+    { "directory": "back", "changeProcessCWD": true }
+  ]
 }
