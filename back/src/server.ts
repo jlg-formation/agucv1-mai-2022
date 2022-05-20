@@ -7,7 +7,7 @@ import cors from "cors";
 import { api } from "./api";
 
 const app = express();
-const port = 3000;
+const port = +(process.env.GS_PORT || 3000);
 const wwwDir = "../front/dist/front";
 
 app.use((req, res, next) => {
